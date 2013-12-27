@@ -7,6 +7,19 @@
     <meta name="description" content="Effect.notify : Event.Notify script.aculo.us extension plugin" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/notify.css">
+      
+    <script src="./javascripts/prototype.js"></script>
+    <script src="./javascripts/scriptaculous.js?load=effects"></script>
+    <script src="./javascripts/effect.notify.js"></script>
+    <script>
+      document.observe('dom:loaded', function(){
+        Event.observe($('startEffect'), 'click', function(){
+																		new Effect.Notify('notify1', {notify : {top : 60, right : 100, delay : 10}, appear: {}, fade : {}});
+																		new Effect.Notify('notify2', {notify : {delay : 3, top : 170, right : 100}});
+																		});
+		});
+    </script>
 
     <title>Effect.notify</title>
   </head>
@@ -32,7 +45,41 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h3>
-<a name="eventnotify-scriptaculous-extension-plugin" class="anchor" href="#eventnotify-scriptaculous-extension-plugin"><span class="octicon octicon-link"></span></a>Event.Notify script.aculo.us extension plugin</h3>
+          <a name="eventnotify-scriptaculous-extension-plugin" class="anchor" href="#eventnotify-scriptaculous-extension-plugin">
+            <span class="octicon octicon-link"></span>
+          </a>
+          Event.Notify script.aculo.us extension plugin
+        </h3>
+        <p>
+          Event.Notify is a script.aculo.us extension. It is a minimalist user notifiation effect. Displays a notification box and hides it after a given time or when it is closed.
+        </p>
+        <section id="livetest">
+          <p>
+            You could try it yourself pushing this button.
+          </p>
+            <button id="startEffect">Effect.Notify test</button>
+        </section>
+        <section id="examples">
+          <h3>Usage examples</h3>
+          <ul>
+            <li>new Effect.Notify(element);</li>
+            <li>new Effect.Notify(element, {notify : {bottom : 50, right : 100}, appear: {}, fade : {duration: 5.0}});</li>
+          </ul>
+          <p>You could use all of the parameters of Effect.Fade and Effect.Appear</p>
+          
+          <h4>Valid keys for the notify parameter</h4>
+          <dl>
+            <dt>top or bottom</dt>
+              <dl>the top or the bottom position of the notification box in pixels</dl>
+            <dt>right or left</dt>
+              <dl>the right or left position of the notification box in pixels</dl>
+            <dt>delay</dt>
+              <dl>how long the notification box should be visible in seconds</dl>
+          </dl>
+          <p>
+            If you want to add a close button to your notification box you should have a child element with "notifyClose" css class name inside of your notification box.
+          </p>
+        </section>
       </section>
     </div>
 
@@ -44,7 +91,12 @@
       </footer>
     </div>
 
+    <div id="notify1" style="display:none;">
+      <div class="notifyClose"><span style="padding: 0.3em;">x</span></div>
+      <span class="notifyContent">This is notification box #1, lives for 10 seconds, but you could close it any time</span>
+    </div>
     
+    <div id="notify2" style="display:none;">This is notification box #2. Disappears after 3 secs</div>
 
   </body>
 </html>
